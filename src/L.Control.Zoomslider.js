@@ -22,7 +22,7 @@ L.Control.Zoomslider = L.Control.extend({
 			'out', 'bottom', container, this._zoomOut);
 
 		map.on('layeradd layerremove', this._refresh, this);
-
+		map.on('zoomend', this._updateDisabled, this);
 		map.whenReady(function () {
 			this._snapToSliderValue();
 			map.on('zoomend', this._snapToSliderValue, this);
@@ -56,7 +56,8 @@ L.Control.Zoomslider = L.Control.extend({
 			slider =  L.DomUtil.create('div', sliderClass + ' leaflet-bar-part', container);
 		slider.style.height = (this._sliderHeight + 5) + "px";
 		var body = L.DomUtil.create('div',
-									sliderClass + '-body',
+									sliderClass + '-body'
+									+ ' leaflet-clickable',
 									slider);
 		this._knob = L.DomUtil.create('div', sliderClass + '-knob', body);
 
@@ -138,7 +139,6 @@ L.Control.Zoomslider = L.Control.extend({
 	},
 
 	_snapToSliderValue: function(sliderValue) {
-		this._updateDisabled();
 		if(this._knob) {
 			sliderValue = isNaN(sliderValue)
 				? this._getSliderValue()

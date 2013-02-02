@@ -11,6 +11,9 @@
 	height: 100%;
 	cursor: default;
 }
+/* .leaflet-control-zoomslider-slider-body:hover { */
+/* 	cursor: pointer; */
+/* } */
 
 .leaflet-control-zoomslider-slider-knob {
 	width: 13px;
@@ -24,7 +27,8 @@
 	position:relative;
 }
 .leaflet-control-zoomslider-slider-knob:hover {
-	cursor: pointer;
+	cursor: -webkit-grab;
+	cursor:    -moz-grab;
 }
 
 /** Leaflet Zoom Styles **/
